@@ -16,10 +16,13 @@ the substitution with a single regex.
 """
 
 import re
+from typing import List
 
 
-def filter_datum(fields, redaction, message, separator):
-    """returns unclesr log message"""
+def filter_datum(fields: List[str], redaction: str, message: str,
+                 separator: str) -> str:
+    """returns unclear log messages"""
+
     for i in fields:
         message = re.sub(i + "=.*?" + separator,
                          i + "=" + redaction + separator,
