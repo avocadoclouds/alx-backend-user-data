@@ -18,18 +18,18 @@ How to encrypt a password and check the validity of an input password
 How to authenticate to a database using environment variables
 
 ### Requirements
-All your files will be interpreted/compiled on Ubuntu 18.04 LTS using python3 (version 3.7)
-All your files should end with a new line
-The first line of all your files should be exactly #!/usr/bin/env python3
-A README.md file, at the root of the folder of the project, is mandatory
-Your code should use the pycodestyle style (version 2.5)
-All your files must be executable
-The length of your files will be tested using wc
-All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)')
-All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)')
-All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)')
-A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
-All your functions should be type annotated
+All your files will be interpreted/compiled on Ubuntu 18.04 LTS using python3 (version 3.7). 
+All your files should end with a new line. 
+The first line of all your files should be exactly #!/usr/bin/env python3. 
+A README.md file, at the root of the folder of the project, is mandatory. 
+Your code should use the pycodestyle style (version 2.5). 
+All your files must be executable. 
+The length of your files will be tested using wc. 
+All your modules should have a documentation (python3 -c 'print(__import__("my_module").__doc__)'). 
+All your classes should have a documentation (python3 -c 'print(__import__("my_module").MyClass.__doc__)'). 
+All your functions (inside and outside a class) should have a documentation (python3 -c 'print(__import__("my_module").my_function.__doc__)' and python3 -c 'print(__import__("my_module").MyClass.my_function.__doc__)'). 
+A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified). 
+All your functions should be type annotated. 
 
 -----
 
@@ -74,3 +74,17 @@ Only your main function should run when the module is executed.
 
 
 #### Task 5
+User passwords should NEVER be stored in plain text in a database.
+
+Implement a hash_password function that expects one string argument name password and returns a salted, hashed password, which is a byte string.
+
+Use the bcrypt package to perform the hashing (with hashpw).
+
+#### Task 6
+Implement an is_valid function that expects 2 arguments and returns a boolean.
+
+Arguments:
+
+hashed_password: bytes type
+password: string type
+Use bcrypt to validate that the provided password matches the hashed password.
