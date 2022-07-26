@@ -72,7 +72,7 @@ class BasicAuth(Auth):
         """
         if decoded_base64_authorization_header is None:
             return None, None
-        if type(decoded_base64_authorization_header) != None:
+        if type(decoded_base64_authorization_header) != str:
             return None, None
         if ":" not in decoded_base64_authorization_header:
             return None, None
@@ -88,7 +88,7 @@ class BasicAuth(Auth):
         - Return None if user_pwd is None or not a string
         - Return None if your database (file) doesn’t contain-
           any User instance with email equal to user_email-
-          you should use the class method search of the User- 
+          you should use the class method search of the User-
           to lookup the list of users based on their email. Don’t forget-
           to test all cases: “what if there is no user in DB?”, etc.
         - Return None if user_pwd is not the password of the User-
