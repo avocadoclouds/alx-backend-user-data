@@ -2,6 +2,8 @@
 """ BasicAuth that inherits from Auth """
 
 from api.v1.auth.auth import Auth
+from base64 import b64decode
+from typing import TypeVar
 
 
 class BasicAuth(Auth):
@@ -28,3 +30,26 @@ class BasicAuth(Auth):
             return None
         if authorization_header[0:6] == "Basic ":
             return authorization_header[6:]
+
+    def decode_base64_authorization_header(self,
+                                           base64_authorization_header: str) -> str:
+        """
+        returns the decoded value of a Base64 string
+        base64_authorization_header:
+            - Return None if base64_authorization_header is None
+            - Return None if base64_authorization_header is not a string
+            - Return None if base64_authorization_header is not
+                a valid Base64 - you can use try/except
+            - Otherwise, return the decoded value as UTF8 string-
+                you can use decode('utf-8')
+        """
+
+        if base64_authorization_header is None:
+            return None
+        if type(base64_authorization_header) != str:
+            return None
+
+        try:
+            return b64decode(base64_authorization_header).decode('utf-8')
+        except Exception as e:
+            None
