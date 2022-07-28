@@ -45,3 +45,4 @@ class Auth:
         returns None
         request - Flask request object
         """
+        return None
