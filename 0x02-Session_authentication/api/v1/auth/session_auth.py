@@ -2,6 +2,7 @@
 """class session"""
 from api.v1.auth.auth import Auth
 from uuid import uuid4
+from api.v1.views.users import User
 
 
 class SessionAuth(Auth):
@@ -29,3 +30,21 @@ class SessionAuth(Auth):
             session_id = str(uuid4())
             self.user_id_by_session_id[session_id] = user_id
             return session_id
+
+    def user_id_for_session_id(self, session_id: str = None) -> str:
+        """
+        returns a User ID bases on Session ID:
+        Return None if session_id is None
+        Return None if session_id is not a string
+        Return the value (the User ID) for the key,
+         session_id in the dictionary user_id_by_session_id.
+        use .get() built-in for accessing in a dictionary,
+         a value based on key
+        """
+
+        if session_id is None:
+            return None
+        if type(session_id) != str:
+            return None
+
+        return self.user_id_by_session_id.get(session_id)
