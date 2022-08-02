@@ -10,6 +10,7 @@ engine = create_engine('mysql:///:Info:', echo=True)
 
 Base = declarative_base()
 
+
 class User(Base):
     """
     model named User for a database table named users
@@ -21,3 +22,4 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     session_id = Column(String)
     reset_token = Column(String)
+    
