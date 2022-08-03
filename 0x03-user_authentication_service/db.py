@@ -9,7 +9,7 @@ from sqlalchemy.orm.session import Session
 from user import Base, User
 
 
-class DB:
+class DB():
     """DB class
     """
 
