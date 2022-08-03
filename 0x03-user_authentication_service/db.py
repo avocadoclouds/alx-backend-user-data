@@ -50,12 +50,12 @@ class DB():
         is used for filtering
         """
 
-        # query from the database
-        try:
-            user = self._session.query(User).filter_by(**kwargs).first()
-        except TypeError:
+        # check kwargs
+        if kwargs is None:
             raise InvalidRequestError
 
+        # query the data
+        user = self._session.query(User).filter_by(**kwargs).first()
         if user is None:
             raise NoResultFound
         return user
