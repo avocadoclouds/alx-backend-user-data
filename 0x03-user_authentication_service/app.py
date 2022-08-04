@@ -36,6 +36,8 @@ def register() -> Union[str, tuple]:
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
 
+# Task 11
+
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login():
