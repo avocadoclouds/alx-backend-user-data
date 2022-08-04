@@ -6,6 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from user import User
 from db import DB
 from uuid import uuid4
+from typing import Union
 
 # Private functions to the auth modeule and not be used outside of it
 
@@ -80,3 +81,19 @@ class Auth:
         self._db.update_user(user.id, session_id=session_id)
 
         return session_id
+
+    def get_user_from_session_id(self, session_id: str) -> Union[str, None]:
+        """
+        If the session ID is None or no user is found, return None.
+        Otherwise return the corresponding user.
+        Remember to only use public methods of self._db.
+        """
+        if session_id is None:
+            return None
+
+        try:
+            user = self._db.find_user_by(session_id=session_id)
+        except NoResultFound:
+            return None
+
+        return user
