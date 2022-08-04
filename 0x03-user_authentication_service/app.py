@@ -3,9 +3,11 @@
 Flask app
 """
 from flask import Flask, jsonify, request, abort
-from auth import Auth
 from typing import Union
+from auth import Auth
 
+
+AUTH = Auth()
 app = Flask(__name__)
 
 
@@ -26,7 +28,7 @@ def register() -> Union[str, tuple]:
     email = request.form["email"]
     password = request.form["password"]
     try:
-        Auth.register_user(email, password)
+        AUTH.register_user(email, password)
         return jsonify({
             "email": email,
             "message": "user created"
@@ -40,9 +42,9 @@ def login():
     """Returns a boolean by checking the email & password."""
     email = request.form.get('email')
     password = request.form.get('password')
-    if not Auth.valid_login(email, password):
+    if not AUTH.valid_login(email, password):
         abort(401)
-    session_id = Auth.create_session(email)
+    session_id = AUTH.create_session(email)
     res = jsonify({"email": email, "message": "logged in"})
     res.set_cookie('session_id', session_id)
     return res
