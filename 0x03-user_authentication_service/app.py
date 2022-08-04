@@ -28,8 +28,12 @@ def register() -> Union[str, tuple]:
     password = request.form.get('password')
 
     try:
-        Auth.register_user(email, password)
-        return jsonify({"email": email, "message": "user created"})
+        record = Auth.register_user(email, password)
+        if record is not None:
+            return jsonify({
+                "email": record.email,
+                "message": "user created"
+            })
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
 
