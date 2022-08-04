@@ -50,11 +50,19 @@ class DB():
         - method takes in arbitrary keyword arguments, which
         is used for filtering
         """
+        if not kwargs:
+            raise InvalidRequestError
+
+        fields = User.__table__.columns.keys()
+        for key in kwargs.keys():
+            if key not in fields:
+                raise InvalidRequestError
 
         try:
             user = self._session.query(User).filter_by(**kwargs).first()
         except TypeError:
             raise InvalidRequestError
+
         if user is None:
             raise NoResultFound
         return user
