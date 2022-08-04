@@ -67,6 +67,7 @@ class Auth:
 
         return False
 
+# Task 10
     def create_session(self, email: str) -> str:
         """ Returns session ID for a user """
         try:
